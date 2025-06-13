@@ -1,19 +1,28 @@
-version: '3'
+version: '3.8'  # Обновите версию для поддержки сетей
+
 services:
   app:
-    environment:
-      - VK_API_VERSION=5.199
-    networks:
-      - nginx-network
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
+    environment:
+      - VK_API_VERSION=5.199
+    networks:
+      - backend-network
+    depends_on:
+      - redis
+
   redis:
     image: "redis:7.2"
     ports:
       - "6379:6379"
-  networks:
-    nginx-network:
-      external: true
+    networks:
+      - backend-network
+
+networks:
+  backend-network:
+    driver: bridge
+  nginx-network:
+    external: true  # Для подключения Nginx
