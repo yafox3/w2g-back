@@ -1,6 +1,10 @@
 version: '3'
 services:
   app:
+    environment:
+      - VK_API_VERSION=5.199
+    networks:
+      - nginx-network
     build:
       context: .
       dockerfile: Dockerfile
