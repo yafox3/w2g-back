@@ -14,10 +14,8 @@ public class ApplicationConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("https://watch2gether.site")
-                        .allowedMethods("GET", "POST")
-                        .allowedHeaders("Authorization", "Content-Type")
-                        .allowCredentials(true);
+                        .allowedOrigins("*")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE");
             }
         };
     }
